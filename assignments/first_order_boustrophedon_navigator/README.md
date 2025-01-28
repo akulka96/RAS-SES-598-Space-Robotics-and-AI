@@ -3,7 +3,8 @@
 **Email:** akulka96@asu.edu  
 **Student ID:** 1233494108  
 
-![Boustrophedon Navigator Output](./assignments/first_order_boustrophedon_navigator/[Screenshot from 2025-01-27 23-53-29.png](https://github.com/akulka96/RAS-SES-598-Space-Robotics-and-AI/blob/e8a77011e3d609eb1c48c7b8137782ad0b135f50/assignments/first_order_boustrophedon_navigator/Screenshot%20from%202025-01-27%2023-53-29.png))
+![image]![Screenshot from 2025-01-27 23-53-29](https://github.com/user-attachments/assets/bd664511-497a-4fa8-b2e6-b656c8b72e4f)
+
 
 ---
 
