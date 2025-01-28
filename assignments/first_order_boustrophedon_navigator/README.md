@@ -7,6 +7,7 @@
 # Output
 ## Image
 ![Screenshot from 2025-01-27 23-53-29](https://github.com/user-attachments/assets/aa31cf52-b086-4d41-8213-dac77a16097a)
+## Video
 
 
 ## 1. Introduction
@@ -28,8 +29,8 @@ I incrementally increased these gains from lower baseline values, observing both
 ---
 
 ## 3. Results
-- **Final Average Cross-Track Error:** **0.041**  
-- **Maximum Cross-Track Error:** **0.109**
+- **Final Average Cross-Track Error:** **0.038**  
+- **Maximum Cross-Track Error:** **0.106**
 
 These values indicate that the turtle consistently stayed near the desired trajectory. Sharp turns and rapid maneuvers were minimized, resulting in good coverage and smooth transitions between rows.
 
@@ -100,4 +101,4 @@ Through these plots and observations, I concluded that my final PD settings met 
 ---
 
 ## 8. Conclusion
-By systematically tuning the PD gains and adjusting the line spacing, I achieved an **average cross-track error of 0.041** and a **maximum cross-track error of 0.109**, which aligns well with the assignment’s precision targets. The result is a smooth, nearly uniform lawnmower coverage that effectively demonstrates the benefits of proper PD control in a first-order ROS2 simulation. Although I have not implemented the bonus custom message type, the core objectives of this assignment were fulfilled with satisfactory performance.
+By systematically tuning the PD gains and adjusting the line spacing, I achieved an **average cross-track error of 0.038** and a **maximum cross-track error of 0.106**, which aligns well with the assignment’s precision targets. The result is a smooth, nearly uniform lawnmower coverage that effectively demonstrates the benefits of proper PD control in a first-order ROS2 simulation. Although I have not implemented the bonus custom message type, the core objectives of this assignment were fulfilled with satisfactory performance.
