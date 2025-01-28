@@ -7,8 +7,6 @@
 # Output
 ## Image
 ![Screenshot from 2025-01-27 23-53-29](https://github.com/user-attachments/assets/aa31cf52-b086-4d41-8213-dac77a16097a)
-## Video
-
 
 ## 1. Introduction
 This repository contains my tuned implementation of the First-Order Boustrophedon Navigator using Turtlesim in ROS2. The main goal was to create a uniform lawnmower (boustrophedon) pattern, ensuring minimal cross-track error and smooth motion. Through careful tuning of the PD controller, I achieved a precise coverage pattern that meets the assignment’s requirements for controller performance and pattern quality.
