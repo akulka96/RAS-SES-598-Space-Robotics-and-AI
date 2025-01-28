@@ -1,208 +1,106 @@
-# First-Order Boustrophedon Navigator
-![image](https://github.com/user-attachments/assets/940fc6bc-fcee-4d11-8bc8-d53a650aaf80)
+## Author Information
+**Name:** Atharv Rahul Kulkarni  
+**Email:** akulka96@asu.edu  
+**Student ID:** 1233494108  
 
-In this assignment, you will understand the provided code in ROS2 with Turtlesim, and refactor and/or tune the navigator to implement a precise lawnmower survey (a boustrophedon pattern). The current code will do a pattern shown above, which is not a uniform lawnmower survey. 
-Explore literature on how lawnmower surveys typically look, and modify the code to meet the requirements for a uniform survey. 
+![Boustrophedon Navigator Output](./assignments/first_order_boustrophedon_navigator/[Screenshot from 2025-01-27 23-53-29.png](https://github.com/akulka96/RAS-SES-598-Space-Robotics-and-AI/blob/e8a77011e3d609eb1c48c7b8137782ad0b135f50/assignments/first_order_boustrophedon_navigator/Screenshot%20from%202025-01-27%2023-53-29.png))
 
-## Background
-Boustrophedon patterns (from Greek: "ox-turning", like an ox drawing a plow) are fundamental coverage survey trajectories useful in space exploration and Earth observation. These patterns are useful for:
+---
 
-- **Space Exploration**: Rovers could use boustrophedon patterns to systematically survey areas of interest, ensuring complete coverage when searching for geological samples or mapping terrain. However, due to energy constraints, informative paths are usually optimized, and this results in paths that are sparser than complete coverage sampling, and may still produce high-accuracy reconstructions. 
-  
-- **Earth Observation**: Aerial vehicles employ these patterns for:
-  - Agricultural monitoring and precision farming
-  - Search and rescue operations
-  - Environmental mapping and monitoring
-  - Geological or archaeological surveys
-  
-- **Ocean Exploration**: Autonomous underwater vehicles (AUVs) use boustrophedon patterns to:
-  - Map the ocean floor
-  - Search for shipwrecks or aircraft debris
-  - Monitor marine ecosystems
-  
-The efficiency and accuracy of these surveys depend heavily on the robot's ability to follow the prescribed path with minimal deviation (cross-track error). This assignment simulates these real-world challenges in a 2D environment using a first-order dynamical system (the turtlesim robot).
+## 1. Introduction
+This repository contains my implementation of a first-order boustrophedon (lawnmower) navigator in ROS2 using Turtlesim. The main objective was to have the turtle systematically cover a 2D area with minimal cross-track error and smooth cornering. My approach involves a proportional-derivative (PD) controller that I’ve tuned to ensure stable tracking and consistent coverage.
 
-## Objective
-Tune a PD controller to make a first-order system execute the most precise boustrophedon pattern possible. The goal is to minimize the cross-track error while maintaining smooth motion.
+---
 
-## Learning Outcomes
-- Understanding PD control parameters and their effects on first-order systems
-- Practical experience with controller tuning
-- Analysis of trajectory tracking performance
-- ROS2 visualization and debugging
+## 2. How to Use
+1. **Clone or Fork** this repository into your ROS2 workspace’s `src` folder.
+2. **Install Dependencies:**
+   ```bash
+   sudo apt update
+   sudo apt install ros-$ROS_DISTRO-turtlesim
+   sudo apt install ros-$ROS_DISTRO-rqt*
+   pip3 install --user numpy matplotlib
+   ```
+3. **Build the Package:**
+   ```bash
+   cd ~/ros2_ws
+   colcon build --packages-select first_order_boustrophedon_navigator
+   source install/setup.bash
+   ```
+4. **Run the Launch File:**
+   ```bash
+   ros2 launch first_order_boustrophedon_navigator boustrophedon.launch.py
+   ```
+   This will start Turtlesim and run the boustrophedon pattern with my final PD gains.
 
-## Prerequisites
-
-### System Requirements
-Choose one of the following combinations:
-- Ubuntu 22.04 + ROS2 Humble
-- Ubuntu 23.04 + ROS2 Iron
-- Ubuntu 23.10 + ROS2 Iron
-- Ubuntu 24.04 + ROS2 Jazzy
-
-### Required Packages
-```bash
-sudo apt install ros-$ROS_DISTRO-turtlesim
-sudo apt install ros-$ROS_DISTRO-rqt*
-```
-
-### Python Dependencies
-```bash
-pip3 install numpy matplotlib
-```
-
-## The Challenge
-
-### 1. Controller Tuning (60 points)
-Use rqt_reconfigure to tune the following PD controller parameters in real-time:
-```python
-# Controller parameters to tune
-self.Kp_linear = 1.0   # Proportional gain for linear velocity
-self.Kd_linear = 0.1   # Derivative gain for linear velocity
-self.Kp_angular = 1.0  # Proportional gain for angular velocity
-self.Kd_angular = 0.1  # Derivative gain for angular velocity
-```
-
-Performance Metrics:
-- Average cross-track error (25 points)
-- Maximum cross-track error (15 points)
-- Smoothness of motion (10 points)
-- Cornering performance (10 points)
-
-### 2. Pattern Parameters (20 points)
-Optimize the boustrophedon pattern parameters:
-```python
-# Pattern parameters to tune
-self.spacing = 1.0     # Spacing between lines
-```
-- Coverage efficiency (10 points)
-- Pattern completeness (10 points)
-
-### 3. Analysis and Documentation (20 points)
-Provide a detailed analysis of your tuning process:
-- Methodology used for tuning
-- Performance plots and metrics
-- Challenges encountered and solutions
-- Comparison of different parameter sets
-
-## Getting Started
-
-### Repository Setup
-1. Fork the course repository:
-   - Visit: https://github.com/DREAMS-lab/RAS-SES-598-Space-Robotics-and-AI
-   - Click "Fork" in the top-right corner
-   - Select your GitHub account as the destination
-
-2. Clone your fork (outside of ros2_ws):
-```bash
-cd ~/
-git clone https://github.com/YOUR_USERNAME/RAS-SES-598-Space-Robotics-and-AI.git
-```
-
-3. Create a symlink to the assignment in your ROS2 workspace:
-```bash
-cd ~/ros2_ws/src
-ln -s ~/RAS-SES-598-Space-Robotics-and-AI/assignments/first_order_boustrophedon_navigator .
-```
-
-### Building and Running
-1. Build the package:
-```bash
-cd ~/ros2_ws
-colcon build --packages-select first_order_boustrophedon_navigator
-source install/setup.bash
-```
-
-2. Launch the demo:
-```bash
-ros2 launch first_order_boustrophedon_navigator boustrophedon.launch.py
-```
-
-3. Monitor performance:
-```bash
-# View cross-track error as a number
-ros2 topic echo /cross_track_error
-
-# Or view detailed statistics in the launch terminal
-```
-
-4. Visualize trajectory and performance:
+For real-time visualization, you can also run:
 ```bash
 ros2 run rqt_plot rqt_plot
 ```
-Add these topics:
-- /turtle1/pose/x
-- /turtle1/pose/y
-- /turtle1/cmd_vel/linear/x
-- /turtle1/cmd_vel/angular/z
-- /cross_track_error
+and add topics like `/cross_track_error` or `/turtle1/pose/x` to observe performance.
 
-## Evaluation Criteria
+---
 
-1. Controller Performance (60%)
-   - Average cross-track error < 0.2 units (25%)
-   - Maximum cross-track error < 0.5 units (15%)
-   - Smooth velocity profiles (10%)
-   - Clean cornering behavior (10%)
+## 3. Methodology
+I started by reviewing standard boustrophedon (or lawnmower) patterns often used for complete coverage tasks. The navigator in this assignment plans parallel rows with a specified spacing, and the turtle transitions between rows at the edges of the space.
 
-2. Pattern Quality (20%)
-   - Even spacing between lines
-   - Complete coverage of target area
-   - Efficient use of space
+### Controller
+- **PD Control**: I used a simple PD approach (with proportional and derivative terms) for both linear and angular velocity commands. My aim was to minimize cross-track error on the straight segments and reduce overshoot during turns.
 
-3. Documentation (20%)
-   - Clear explanation of tuning process
-   - Well-presented performance metrics
-   - Thoughtful analysis of results
+### Tuning Steps
+1. Began with lower proportional gains to avoid instability.  
+2. Incrementally raised the proportional terms until the turtle tracked lines well.  
+3. Added small derivative terms to smooth out oscillations on straight paths and during turns.  
+4. Tweaked the spacing to ensure adequate coverage without forcing extremely tight cornering.
 
-## Submission Requirements
+---
 
-1. GitHub Repository:
-   - Commit messages should be descriptive
+## 4. Parameter Tuning
+Here are the final values that worked best in my tests:
 
-2. Documentation in Repository:
-   - Update the README.md in your fork with:
-     - Final parameter values with justification
-     - Performance metrics and analysis
-     - Plots showing:
-       - Cross-track error over time
-       - Trajectory plot
-       - Velocity profiles
-     - Discussion of tuning methodology
-     - Challenges and solutions
+- **Kp_linear:** 10  
+- **Kd_linear:** 0.4  
+- **Kp_angular:** 11  
+- **Kd_angular:** 0.015  
+- **Line Spacing:** 1.2  
 
-3. Submit your work:
-   - Submit the URL of your GitHub repository
-   - Ensure your repository is public
-   - Final commit should be before the deadline
+I found these gains to provide a good balance between responsiveness and stability. The linear gains make the turtle quickly converge to each row, while the angular gains help it pivot effectively with minimal overshoot at corners.
 
-## Tips for Success
-- Start with low gains and increase gradually
-- Test one parameter at a time
-- Pay attention to both straight-line tracking and cornering
-- Use rqt_plot to visualize performance in real-time
-- Consider the trade-off between speed and accuracy
+---
 
-## Grading Rubric
-- Perfect tracking (cross-track error < 0.2 units): 100%
-- Good tracking (cross-track error < 0.5 units): 90%
-- Acceptable tracking (cross-track error < 0.8 units): 80%
-- Poor tracking (cross-track error > 0.8 units): 60% or lower
+## 5. Visualization & Tools
+- **Turtlesim** for simulating the robot motion in a simple 2D environment.  
+- **rqt_plot** to track key topics:
+  - `/cross_track_error` for error monitoring
+  - `/turtle1/pose/*` to watch turtle position
+  - `/turtle1/cmd_vel/*` for velocity commands  
+- **rqt_reconfigure** can be used to experiment with different gains live (if you have the relevant package installed).
 
-Note: Final grade will also consider documentation quality and analysis depth.
+---
 
-## Extra Credit (10 points)
-Create and implement a custom ROS2 message type to publish detailed performance metrics:
-- Define a custom message type with fields for:
-  - Cross-track error
-  - Current velocity
-  - Distance to next waypoint
-  - Completion percentage
-  - Other relevant metrics
-- Implement the message publisher in your node
-- Document the message structure and usage
+## 6. Challenges and Solutions
+- **Initial Overshoot**: With high proportional gains, the turtle would wildly overshoot the desired path. Lowering `Kp` and introducing a small `Kd` helped dampen these oscillations.
+- **Corner Oscillations**: Sharp turns at the row ends caused noticeable error spikes. Increasing `Kp_angular` and adding a small `Kd_angular` term made cornering tighter and smoother.
+- **Spacing vs. Coverage**: If spacing was too large, the turtle made abrupt U-turns. Adjusting spacing to 1.2 minimized extreme steering while still covering the area effectively.
 
-This will demonstrate understanding of:
-- ROS2 message definitions
-- Custom interface creation
-- Message publishing patterns 
+---
+
+## 7. Performance Metrics & Plots
+- **Final Average Cross-Track Error**: **0.041**  
+- **Maximum Cross-Track Error**: **0.109**  
+
+These values reflect how well the turtle adhered to each row throughout the run.  
+You can see an example of the error trend or the turtle’s path in the plot above (`my_output.png`), which shows relatively tight tracking and smoother corner transitions compared to earlier runs.
+
+If you’d like to generate more plots yourself, simply pipe the data into `rqt_plot` or a custom Python script that subscribes to `/cross_track_error`.
+
+---
+
+## 8. Conclusion
+This project demonstrates that careful PD tuning can significantly improve coverage path tracking for a first-order robot model in ROS2. With the final gains listed above, the turtle follows a consistent lawnmower path, maintains an average cross-track error of around 0.041 (well below the target threshold), and keeps corners neat without substantial overshoot.  
+
+There’s always room for further refinement, but I’m satisfied with these results given the goals and constraints of this assignment. If you have any questions or suggestions, feel free to reach out via my email above.
+
+---
+```
+
