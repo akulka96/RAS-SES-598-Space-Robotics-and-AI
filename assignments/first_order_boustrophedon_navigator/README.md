@@ -101,8 +101,3 @@ Through these plots and observations, I concluded that my final PD settings met 
 
 ## 8. Conclusion
 By systematically tuning the PD gains and adjusting the line spacing, I achieved an **average cross-track error of 0.041** and a **maximum cross-track error of 0.109**, which aligns well with the assignment’s precision targets. The result is a smooth, nearly uniform lawnmower coverage that effectively demonstrates the benefits of proper PD control in a first-order ROS2 simulation. Although I have not implemented the bonus custom message type, the core objectives of this assignment were fulfilled with satisfactory performance.
-
----
-```
-
-
