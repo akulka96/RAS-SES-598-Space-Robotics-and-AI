@@ -3,6 +3,8 @@
 
 **Atharv Kulkarni**
 
+**Email: akulka96@asu.edu**
+
 **ID: 1233494108**
 
 **RAS598**
