@@ -26,8 +26,8 @@ The original LQR parameters were:
 
 ### Final Configuration after Tuning
 After extensive testing and parameter adjustments, the final configuration is:
-- **State Cost Matrix (Q):** `np.diag([7.0, 2.0, 2.0, 1.0])`
-- **Control Cost (R):** `np.array([[0.12]])`
+- **State Cost Matrix (Q):** `np.diag([7.0, 2.0, 3.0, 1.0])`
+- **Control Cost (R):** `np.array([[0.01]])`
 
 ## 4. Justification for Parameter Changes
 
@@ -36,7 +36,7 @@ After extensive testing and parameter adjustments, the final configuration is:
   Changing the first element from 1.0 to 7.0 indicates a higher penalty on deviations in cart position. This was necessary to better enforce the physical constraint of ±2.5 m, ensuring that the cart remains within safe operational boundaries during seismic disturbances.
   
 - **Moderated Weight on Velocities and Pole Angle:**  
-  Adjusting the second and third diagonal elements (from 1.0 and 10.0 to 2.0 each) helped in balancing the dynamic response of the cart and the pole. The lower weight on the pole's angular velocity compared to the initial configuration provided a more gradual corrective action, preventing excessive oscillations.
+  Adjusting the second and third diagonal elements (from 1.0 and 10.0 to 2.0 and 3.0 respectively) helped in balancing the dynamic response of the cart and the pole. The lower weight on the pole's angular velocity compared to the initial configuration provided a more gradual corrective action, preventing excessive oscillations.
   
 - **Reduced Emphasis on Control Rate:**  
   The reduction of the last element (from 10.0 to 1.0) reflects a shift in focus from aggressively minimizing control rates to ensuring system stability. This trade-off allowed for smoother control action under high disturbances.
