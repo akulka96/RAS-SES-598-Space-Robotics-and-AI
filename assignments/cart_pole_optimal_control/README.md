@@ -106,7 +106,6 @@ The tuning process involved several trade-offs:
 
 ---
 ## Video 
-![Video Link to Google drive](https://drive.google.com/file/d/1PmQJrBnvI6Irgdl9IiE-GEXJ3pFxlEMq/view?usp=sharing)
 https://drive.google.com/file/d/1PmQJrBnvI6Irgdl9IiE-GEXJ3pFxlEMq/view?usp=sharing
 ## 7. Conclusion
 
