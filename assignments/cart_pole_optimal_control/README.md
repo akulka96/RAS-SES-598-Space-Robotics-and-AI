@@ -106,8 +106,8 @@ The tuning process involved several trade-offs:
 
 ---
 ## Video 
-![Video on Google drive](https://drive.google.com/file/d/1PmQJrBnvI6Irgdl9IiE-GEXJ3pFxlEMq/view?usp=sharing)
-
+![Video Link to Google drive](https://drive.google.com/file/d/1PmQJrBnvI6Irgdl9IiE-GEXJ3pFxlEMq/view?usp=sharing)
+https://drive.google.com/file/d/1PmQJrBnvI6Irgdl9IiE-GEXJ3pFxlEMq/view?usp=sharing
 ## 7. Conclusion
 
 The tuning of the LQR controller by adjusting the Q and R matrices led to a robust performance in the presence of significant earthquake disturbances. The trade-offs between aggressiveness, stability, and control effort were carefully balanced to achieve the following:
