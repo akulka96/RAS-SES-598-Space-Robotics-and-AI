@@ -1,5 +1,12 @@
 # Cart-Pole Optimal Control Assignment
 
+
+**Atharv Kulkarni**
+
+**ID: 1233494108**
+
+**RAS598**
+
 This document presents the analysis and tuning of an LQR controller for a cart-pole system subjected to earthquake disturbances. The objective of this assignment was to maintain the stability of the inverted pendulum while ensuring the cart remains within its ±2.5 m range, even under significant external perturbations. The following report outlines the controller design, tuning process, performance analysis, and trade-offs encountered.
 
 ---
